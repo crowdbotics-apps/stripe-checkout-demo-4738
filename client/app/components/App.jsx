@@ -7,6 +7,7 @@ import Store from '../reducers/store.js';
 import loadingUntil from '../reducers/loading.js';
 import AjaxPromise from 'ajax-promise';
 import 'whatwg-fetch';
+import Checkout from './Checkout.jsx'
 
 class App extends React.Component {
 
@@ -15,14 +16,14 @@ class App extends React.Component {
     this.state = Store.getState();
   }
 
-  componentWillMount(){
+  componentWillMount() {
     Store.dispatch({
       type: "LOADING",
       isLoading: true
     });
   }
 
-  componentDidMount (){
+  componentDidMount() {
     var initAjax = [
       AjaxPromise
         .get('/api/user/current')
@@ -33,7 +34,7 @@ class App extends React.Component {
             user: response
           });
         })
-        .catch(function(err){
+        .catch(function (err) {
           console.log("/api/user/current error", err);
         })
     ];
@@ -43,16 +44,17 @@ class App extends React.Component {
     Store.subscribe(this._getState.bind(this));
   }
 
-  _getState (){
+  _getState() {
     this.setState(Store.getState());
   }
 
-  render () {
+  render() {
     console.log(this.state.isLoading);
     return (
       <div>
         <NavBar {...this.state} />
         <main className="site-content">
+          <Checkout name='Crowdbotics' description='Stripe Checkout Example' amount={1000} />
           <div className="wrap container-fluid">
             {this.state.isLoading ? "Loading..." : this.props.children && React.cloneElement(this.props.children, this.state)}
           </div>

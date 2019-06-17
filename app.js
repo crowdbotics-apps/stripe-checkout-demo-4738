@@ -29,10 +29,11 @@ app.set('port', config.port);
 app.use(logger('dev'));
 
 
-// Support URL-encoded bodies
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 
 
 // Service static assets
