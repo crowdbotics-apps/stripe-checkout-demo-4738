@@ -60,7 +60,7 @@
     "redux": "^3.5.2",
     "reload": "^1.0.1",
     "sass-loader": "^4.0.0",
-    "sequelize": "^3.24.0",
+    "sequelize": "^5.15.1",
     "sequelize-cli": "^2.4.0",
     "stripe": "^7.1.0",
     "style-loader": "^0.13.1",
